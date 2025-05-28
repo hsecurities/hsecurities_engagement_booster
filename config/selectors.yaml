@@ -1,0 +1,40 @@
+# Instagram Element Selectors for hSECURITIES Engagement Booster
+# Types: XPATH, CSS_SELECTOR, ID, NAME, CLASS_NAME, TAG_NAME, LINK_TEXT, PARTIAL_LINK_TEXT
+# YOU MUST INSPECT INSTAGRAM'S HTML TO GET CURRENT AND ROBUST SELECTORS.
+# These are placeholders and examples.
+
+login_page:
+  username_field: {type: NAME, value: "username"}
+  password_field: {type: NAME, value: "password"}
+  login_button: {type: XPATH, value: "//button[@type='submit' and div/text()='Log In']"} # Example
+  save_info_not_now_button: {type: XPATH, value: "//button[text()='Not Now']"} # Example
+  turn_on_notifications_not_now_button: {type: XPATH, value: "//button[text()='Not Now']"} # Example
+
+home_page:
+  home_icon_indicator: {type: XPATH, value: "//a[@href='/']//span[text()='Home']"} # For login verification
+
+post_interaction:
+  # For a post modal (when you click a thumbnail)
+  modal_like_button_unliked: {type: XPATH, value: "//div[@role='dialog']//button[.//span[contains(@aria-label,'Like') and not(contains(@aria-label,'Unlike'))]]"}
+  modal_like_button_liked: {type: XPATH, value: "//div[@role='dialog']//button[.//span[contains(@aria-label,'Unlike')]]"}
+  modal_close_button: {type: XPATH, value: "//div[@aria-label='Close' and @role='button']"}
+  # For posts directly in feed (harder to isolate)
+  feed_post_like_button_unliked: {type: XPATH, value: "(//article//button[.//span[contains(@aria-label,'Like') and not(contains(@aria-label,'Unlike'))]])[1]"} # Example for first post
+
+story_viewer:
+  story_ring_on_feed: {type: XPATH, value: "(//div[@role='list']//button[@role='menuitem'][.//canvas])[1]"} # Example for first story ring
+  story_close_button: {type: CSS_SELECTOR, value: "svg[aria-label='Close']"}
+  story_next_button: {type: XPATH, value: "//button[@aria-label='Next']"} # Or similar for advancing story
+
+hashtag_page:
+  # recent_tab: {type: XPATH, value: "//a[div[text()='Recent']]"} # Often recent is default
+  first_post_thumbnail_link: {type: XPATH, value: "(//main[@role='main']//article//a[@href*='/p/'])[1]"} # Example for first post link
+
+profile_page:
+  followers_button: {type: XPATH, value: "//a[contains(@href,'/followers/')]/span"}
+  followers_list_popup: {type: XPATH, value: "//div[@role='dialog']//ul"} # The list itself
+  follower_username_in_list: {type: XPATH, value: ".//span/a"} # Relative to a list item <li>
+
+# Add selectors for action block popups, error messages, etc.
+error_popups:
+  action_blocked_text: {type: XPATH, value: "//div[contains(text(),'Action Blocked') or contains(text(),'try again later')]"}
