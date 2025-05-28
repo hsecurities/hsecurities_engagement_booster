@@ -1,45 +1,47 @@
 [Branding]
 tool_name = hSECURITIES Engagement Booster
-version = 0.2.0 # Enhanced Foundation
+version = 0.3.0 # Consolidated Foundation
 
 [Credentials]
 # For better security:
 # 1. Leave password blank here and let the script prompt you (getpass).
-# 2. Or, use environment variables for username and password.
+# 2. Or, use environment variables for username and password in your OS.
 username = YOUR_INSTAGRAM_USERNAME
 password =
 
 [GeneralSettings]
 headless_browser = true
-implicitly_wait_time = 10 ; seconds for Selenium implicit waits
-page_load_timeout = 30    ; seconds for page loads
+implicitly_wait_time = 10 ; seconds for Selenium implicit waits (used by WebDriverWait default)
+page_load_timeout = 45    ; seconds for page loads
 script_timeout = 30       ; seconds for JavaScript execution
 base_url = https://www.instagram.com
 log_level = INFO ; DEBUG, INFO, WARNING, ERROR, CRITICAL
-max_retries_on_error = 2 ; For transient Selenium errors
+max_retries_on_error = 2 ; For transient Selenium errors (e.g. stale element)
 
 [AntiDetection]
 use_random_user_agent = true
 user_agent_file = config/user_agents.txt
-min_human_action_delay = 3.5  ; Base minimum delay between significant actions
-max_human_action_delay = 7.2
-min_navigation_delay = 2.1
-max_navigation_delay = 4.3
-min_typing_delay_ms = 80     ; Milliseconds between key presses for typing
-max_typing_delay_ms = 250
-pause_between_sessions_min_minutes = 15
-pause_between_sessions_max_minutes = 45
-enable_session_warmup = true ; For new accounts or after a long break
+min_human_action_delay = 3.8  ; Base minimum delay between significant actions
+max_human_action_delay = 8.2
+min_navigation_delay = 2.5
+max_navigation_delay = 5.3
+min_typing_delay_ms = 70     ; Milliseconds between key presses for typing
+max_typing_delay_ms = 220
+min_story_view_duration_s = 3 ; Minimum seconds to "watch" a story segment
+max_story_view_duration_s = 7
+pause_between_sessions_min_minutes = 20 # After script finishes, before exiting
+pause_between_sessions_max_minutes = 60
+enable_session_warmup = false ; For new accounts or after a long break (Feature Placeholder)
 warmup_days = 3
-warmup_initial_action_percentage = 0.2 ; Start with 20% of max actions
+warmup_initial_action_percentage = 0.2
 
 [SessionManagement]
-cookies_path = .cookies/ ; Path to store cookies, relative to main.py
+cookies_path = .cookies/ ; Path to store cookies, relative to main.py (ensure .gitignore)
 encrypt_cookies = false ; Placeholder for future cookie encryption
 
 [DemoLimits]
-max_likes_per_run = 8
-max_story_views_per_run = 12
+max_likes_per_run = 7
+max_story_views_per_run = 10
 max_targets_per_run = 1 ; e.g., max hashtags or users to target
 
 [ProSettings] ; Ignored if not Pro
@@ -49,14 +51,16 @@ license_key = YOUR_PRO_LICENSE_KEY_HERE_IF_ANY
 # proxy_port =
 # proxy_user =
 # proxy_pass =
-max_likes_per_run = 75
-max_story_views_per_run = 120
+max_likes_per_run = 80
+max_story_views_per_run = 130
 max_targets_per_run = 5
 
 [Blacklist]
-users_to_avoid = user1,another_user_to_avoid
-keywords_in_bio_to_avoid = spam_keyword,promo_keyword # Harder to implement reliably
+# Comma-separated list of usernames to avoid interacting with
+users_to_avoid = official_instagram_account, another_user_to_ignore
+# Comma-separated list of keywords. If found in user bio/post caption, skip interaction (Harder to implement reliably)
+# keywords_to_avoid = giveaway, contest, spamword
 
 [ErrorHandling]
 screenshot_on_error = true
-error_screenshot_path = .errors/ # Relative to main.py
+error_screenshot_path = .errors/ # Relative to main.py (ensure .gitignore)
