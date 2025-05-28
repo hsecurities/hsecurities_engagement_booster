@@ -1,0 +1,62 @@
+[Branding]
+tool_name = hSECURITIES Engagement Booster
+version = 0.2.0 # Enhanced Foundation
+
+[Credentials]
+# For better security:
+# 1. Leave password blank here and let the script prompt you (getpass).
+# 2. Or, use environment variables for username and password.
+username = YOUR_INSTAGRAM_USERNAME
+password =
+
+[GeneralSettings]
+headless_browser = true
+implicitly_wait_time = 10 ; seconds for Selenium implicit waits
+page_load_timeout = 30    ; seconds for page loads
+script_timeout = 30       ; seconds for JavaScript execution
+base_url = https://www.instagram.com
+log_level = INFO ; DEBUG, INFO, WARNING, ERROR, CRITICAL
+max_retries_on_error = 2 ; For transient Selenium errors
+
+[AntiDetection]
+use_random_user_agent = true
+user_agent_file = config/user_agents.txt
+min_human_action_delay = 3.5  ; Base minimum delay between significant actions
+max_human_action_delay = 7.2
+min_navigation_delay = 2.1
+max_navigation_delay = 4.3
+min_typing_delay_ms = 80     ; Milliseconds between key presses for typing
+max_typing_delay_ms = 250
+pause_between_sessions_min_minutes = 15
+pause_between_sessions_max_minutes = 45
+enable_session_warmup = true ; For new accounts or after a long break
+warmup_days = 3
+warmup_initial_action_percentage = 0.2 ; Start with 20% of max actions
+
+[SessionManagement]
+cookies_path = .cookies/ ; Path to store cookies, relative to main.py
+encrypt_cookies = false ; Placeholder for future cookie encryption
+
+[DemoLimits]
+max_likes_per_run = 8
+max_story_views_per_run = 12
+max_targets_per_run = 1 ; e.g., max hashtags or users to target
+
+[ProSettings] ; Ignored if not Pro
+license_key = YOUR_PRO_LICENSE_KEY_HERE_IF_ANY
+# proxy_type = http ; or socks5
+# proxy_host =
+# proxy_port =
+# proxy_user =
+# proxy_pass =
+max_likes_per_run = 75
+max_story_views_per_run = 120
+max_targets_per_run = 5
+
+[Blacklist]
+users_to_avoid = user1,another_user_to_avoid
+keywords_in_bio_to_avoid = spam_keyword,promo_keyword # Harder to implement reliably
+
+[ErrorHandling]
+screenshot_on_error = true
+error_screenshot_path = .errors/ # Relative to main.py
