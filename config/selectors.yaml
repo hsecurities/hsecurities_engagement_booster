@@ -1,40 +1,45 @@
 # Instagram Element Selectors for hSECURITIES Engagement Booster
 # Types: XPATH, CSS_SELECTOR, ID, NAME, CLASS_NAME, TAG_NAME, LINK_TEXT, PARTIAL_LINK_TEXT
 # YOU MUST INSPECT INSTAGRAM'S HTML TO GET CURRENT AND ROBUST SELECTORS.
-# These are placeholders and examples.
 
 login_page:
   username_field: {type: NAME, value: "username"}
   password_field: {type: NAME, value: "password"}
-  login_button: {type: XPATH, value: "//button[@type='submit' and div/text()='Log In']"} # Example
-  save_info_not_now_button: {type: XPATH, value: "//button[text()='Not Now']"} # Example
-  turn_on_notifications_not_now_button: {type: XPATH, value: "//button[text()='Not Now']"} # Example
+  login_button: {type: XPATH, value: "//button[@type='submit'][.//div[text()='Log In' or text()='Log in']]"} # More flexible for text case
+  save_info_not_now_button: {type: XPATH, value: "//button[text()='Not Now' or .//div[text()='Not Now']]"}
+  turn_on_notifications_not_now_button: {type: XPATH, value: "//button[text()='Not Now' or .//div[text()='Not Now']]"}
 
 home_page:
-  home_icon_indicator: {type: XPATH, value: "//a[@href='/']//span[text()='Home']"} # For login verification
+  home_icon_indicator: {type: XPATH, value: "//a[@href='/']/*[local-name()='svg' and @aria-label='Home']"} # More specific
 
 post_interaction:
-  # For a post modal (when you click a thumbnail)
-  modal_like_button_unliked: {type: XPATH, value: "//div[@role='dialog']//button[.//span[contains(@aria-label,'Like') and not(contains(@aria-label,'Unlike'))]]"}
-  modal_like_button_liked: {type: XPATH, value: "//div[@role='dialog']//button[.//span[contains(@aria-label,'Unlike')]]"}
+  # For a post modal (when you click a thumbnail from explore/profile)
+  modal_dialog: {type: XPATH, value: "//div[@role='dialog']"} # To ensure modal is present
+  modal_like_button_unliked: {type: XPATH, value: "//div[@role='dialog']//button//*[local-name()='svg' and (@aria-label='Like' or @aria-label='like') and not(ancestor::button//*[local-name()='svg' and @aria-label='Unlike'])]"}
+  modal_like_button_liked: {type: XPATH, value: "//div[@role='dialog']//button//*[local-name()='svg' and (@aria-label='Unlike' or @aria-label='unlike')]"}
   modal_close_button: {type: XPATH, value: "//div[@aria-label='Close' and @role='button']"}
-  # For posts directly in feed (harder to isolate)
-  feed_post_like_button_unliked: {type: XPATH, value: "(//article//button[.//span[contains(@aria-label,'Like') and not(contains(@aria-label,'Unlike'))]])[1]"} # Example for first post
+  # For posts directly in feed (harder to isolate without context, usually interact via modal)
+  # feed_post_container: {type: XPATH, value: "(//article[@role='presentation'])[1]"} # Example for first article/post
 
 story_viewer:
-  story_ring_on_feed: {type: XPATH, value: "(//div[@role='list']//button[@role='menuitem'][.//canvas])[1]"} # Example for first story ring
-  story_close_button: {type: CSS_SELECTOR, value: "svg[aria-label='Close']"}
-  story_next_button: {type: XPATH, value: "//button[@aria-label='Next']"} # Or similar for advancing story
+  story_ring_on_feed_list: {type: XPATH, value: "//div[@role='list' and .//canvas]//button[@role='menuitem']"} # Gets all story rings
+  story_close_button: {type: XPATH, value: "//*[local-name()='svg' and @aria-label='Close']"} # More general close SVG
+  story_next_button: {type: XPATH, value: "//button[@aria-label='Next']"}
+  story_item_viewed_indicator: {type: XPATH, value: ".//div[contains(@style, 'width: 100%')]"} # Inside a story progress bar item
 
 hashtag_page:
-  # recent_tab: {type: XPATH, value: "//a[div[text()='Recent']]"} # Often recent is default
-  first_post_thumbnail_link: {type: XPATH, value: "(//main[@role='main']//article//a[@href*='/p/'])[1]"} # Example for first post link
+  recent_posts_section_header: {type: XPATH, value: "//span[text()='Most recent']"} # To ensure recent section is loaded
+  post_thumbnail_link_in_recent_grid: {type: XPATH, value: "//main[@role='main']//div[./a[contains(@href,'/p/')]]/a"} # Links wrapping post thumbnails (gets many)
 
 profile_page:
-  followers_button: {type: XPATH, value: "//a[contains(@href,'/followers/')]/span"}
-  followers_list_popup: {type: XPATH, value: "//div[@role='dialog']//ul"} # The list itself
-  follower_username_in_list: {type: XPATH, value: ".//span/a"} # Relative to a list item <li>
+  followers_button_link: {type: XPATH, value: "//a[contains(@href,'/followers/')]"}
+  followers_dialog: {type: XPATH, value: "//div[@role='dialog'][.//h1[contains(text(),'Followers')]]"}
+  followers_list_in_dialog: {type: XPATH, value: ".//ul/div/li"} # List items within the followers dialog (relative to dialog)
+  follower_username_link_in_list_item: {type: XPATH, value: ".//a[contains(@href,'/') and not(contains(@href,'/explore/'))][@role='link']//span"} # Username span inside link
 
-# Add selectors for action block popups, error messages, etc.
+# Action Block / Error Popups
 error_popups:
-  action_blocked_text: {type: XPATH, value: "//div[contains(text(),'Action Blocked') or contains(text(),'try again later')]"}
+  action_blocked_text_indicator: {type: XPATH, value: "//*[contains(text(),'Action Blocked') or contains(text(),'Try Again Later') or contains(text(),'action is blocked')]"}
+  challenge_required_indicator: {type: XPATH, value: "//*[contains(text(),'Challenge Required') or contains(text(),'Verify Your Account')]"}
+  # Add OK/Close buttons for these popups if they exist and are clickable
+  error_popup_ok_button: {type: XPATH, value: "//div[@role='dialog']//button[text()='OK' or text()='Ok']"}
