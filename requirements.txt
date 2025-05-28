@@ -1,5 +1,4 @@
 selenium
 webdriver-manager
-PyYAML         # For reading selectors.yaml
-# Consider for better stealth if you can integrate it:
-# undetected-chromedriver
+PyYAML
+# undetected-chromedriver # Optional, for better stealth if you integrate it
