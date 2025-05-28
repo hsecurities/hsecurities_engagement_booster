@@ -106,13 +106,6 @@
 
 ---
 
-## Usage
-
-Run the main script from the root directory of the project (`hsecurities-engagement_booster/`):
-
-```bash
-python main.py [OPTIONS]
-
 **Command-line Arguments (`python main.py --help` for full list):**
 
 *   `--config FILE_PATH`: Path to your configuration file (default: `config/user_config.ini` relative to `main.py`).
@@ -249,3 +242,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Stay Safe, Be Ethical, & Use Responsibly!**
 This tool interacts with a live platform. Understanding the risks involved and adhering to Instagram's policies (even while experimenting) is crucial.
+
+## Usage
+
+Run the main script from the root directory of the project (`hsecurities-engagement_booster/`):
+
+```bash
+python main.py [OPTIONS]
