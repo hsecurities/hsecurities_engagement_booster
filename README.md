@@ -112,3 +112,207 @@ Run the main script from the root directory of the project (`hsecurities-engagem
 
 ```bash
 python main.py [OPTIONS]
+
+Common Commands:
+
+Engage (like & story view) with specified hashtags (using Demo limits by default):
+
+python main.py --target-type hashtag --targets "photography,travelblogger"
+Use code with caution.
+Bash
+Only like posts from specified hashtags:
+
+python main.py --target-type hashtag --targets "foodie,dessert" --mode like
+Use code with caution.
+Bash
+View stories from your Instagram home feed:
+
+python main.py --mode feed_stories
+Use code with caution.
+Bash
+Command-line Arguments (python main.py --help for full list):
+
+--config FILE_PATH: Path to your configuration file (default: config/user_config.ini relative to main.py).
+
+--mode MODE: Specifies the engagement mode.
+
+like: Only perform "like" actions.
+
+story_view: Only perform "story view" actions.
+
+both: Perform both "like" and "story view" actions (default for hashtag/user targets).
+
+feed_stories: Specifically view stories from your home feed.
+
+--target-type TYPE: Defines the source of your engagement targets.
+
+hashtag: Engage with content related to specified hashtags (default).
+
+user_followers: (PRO Conceptual) Engage with the followers of specified Instagram users.
+
+--targets "TARGET1,TARGET2": A comma-separated string of targets (e.g., "nature,sunset" for hashtags, or "userA,userB" for user_followers). Required if target-type is not feed_stories.
+
+--skip-password-prompt: If the password is not in user_config.ini, the script normally prompts for it. Use this flag to disable the prompt (login will fail if the password isn't set).
+
+Pro Version & Monetization (Conceptual Support Tier)
+This repository provides a Demo version with limited functionality. The "Pro Version" is currently a conceptual support tier for those who wish to encourage further development.
+
+By supporting the project, you help maintain and improve this tool. As a thank you, supporters may gain access to versions with (conceptually):
+
+Higher Action Limits: Increased daily/session quotas for likes, story views, etc.
+
+Advanced Targeting (Conceptual):
+
+Engage with followers/followings of specific users.
+
+Target users who liked/commented on specific posts.
+
+Proxy Support (Conceptual): Ability to use your own HTTP/SOCKS5 proxies.
+
+How to Support and Express Interest in "Pro" Features:
+
+Support via PayU (INR):
+
+Suggested Support Amount: ₹99 INR (One-time)
+
+Payment Link: https://u.payu.in/PAYUMN/2Jn6qaJvdhKD
+
+After Supporting: Please send an email to [YOUR_SUPPORT_EMAIL_ADDRESS_HERE] with your PayU transaction ID and the email address where you'd like to receive updates or conceptual Pro version details if/when they become available.
+
+Support via Bitcoin (BTC):
+
+Suggested Support Amount: Approximately ₹99 INR equivalent in BTC.
+
+Current Suggested BTC Amount: [VERIFY_AND_UPDATE_THIS_BTC_AMOUNT] (e.g., 0.000030 BTC - Please verify the current BTC to INR exchange rate and update this value!)
+
+Bitcoin Address: 1DuVFM8961i8fomMm1sxjJhiCgW6YFA5AH
+
+After Supporting: Please send an email to [YOUR_SUPPORT_EMAIL_ADDRESS_HERE] with:
+
+Your Bitcoin Transaction ID (TXID).
+
+The approximate BTC amount sent.
+
+The email address for updates or conceptual Pro version details.
+
+Note: Bitcoin transactions require network confirmations and include network fees.
+
+Important Notes on "Pro" Access (Conceptual):
+
+The current license validation in licensing/license_validator.py is a simple placeholder. A real Pro version would use a unique license key system.
+
+Delivery & Fulfillment: As this is a conceptual support tier, please allow up to [e.g., 24-48 hours] for manual acknowledgment after sending your support confirmation email. Any "Pro" features or enhanced versions would be communicated via email.
+
+Support Contact: For any support-related queries, please contact [YOUR_SUPPORT_EMAIL_ADDRESS_HERE].
+
+Your support helps keep this experimental project alive!
+
+Maintaining Selectors (config/selectors.yaml)
+This is the most critical and frequent maintenance task for this tool. Instagram's website structure changes often, breaking the bot's ability to find elements.
+
+Identify a Broken Interaction: If the bot fails to click a button, find a field, or perform an action, it's likely a selector issue. Check the logs for errors like "Element not found" or "TimeoutException" related to finding an element.
+
+Open Instagram in your Browser (preferably in Incognito mode to avoid interference from your own logged-in state or extensions).
+
+Navigate to the Page/State where the bot is failing.
+
+Open Developer Tools:
+
+Right-click on the specific element the bot needs to interact with (e.g., the "Log In" button, a "Like" icon, a username input field).
+
+Select "Inspect" or "Inspect Element" from the context menu.
+
+Find a Reliable New Selector in the HTML:
+
+Best: Look for unique id attributes.
+
+Good: Look for stable and descriptive attributes like name, aria-label, role, data-testid.
+
+Okay (use with caution): Class names can be used, but Instagram often uses auto-generated or rapidly changing class names. Try to find more unique or stable parts of a class string.
+
+Construct a CSS Selector or XPath:
+
+CSS Selector Example: button[data-testid='login_button']
+
+XPath Example: //button[@type='submit' and .//div[text()='Log In']]
+
+Test your selector in the Developer Tools console (e.g., using $x("your_xpath") for XPaths or $$("your_css_selector") for CSS selectors) to ensure it uniquely identifies the correct element.
+
+Update config/selectors.yaml:
+
+Open config/selectors.yaml in a text editor.
+
+Find the entry corresponding to the broken element (e.g., login_page.login_button).
+
+Update its type (e.g., XPATH, CSS_SELECTOR) and value (the selector string itself) with the new, working selector you found.
+
+Save selectors.yaml and Test the Bot with the specific action that was failing.
+
+Tips for Robust Selectors:
+
+Avoid selectors that are very long or rely on deep nesting if possible.
+
+Prefer attributes designed for accessibility (aria-label, role) or testing (data-testid) if Instagram uses them, as these tend to be more stable than purely stylistic classes.
+
+Be specific enough to target the correct element but general enough not to break with minor text or layout changes.
+
+Troubleshooting Common Issues
+"Element not found" / TimeoutException on element find: This almost always means the corresponding selector in config/selectors.yaml is outdated or incorrect for the current Instagram UI. Refer to "Maintaining Selectors" above.
+
+Login Failures:
+
+Double-check your username in user_config.ini.
+
+Ensure you are entering the correct password when prompted (or that it's correct in the config, if stored there).
+
+Instagram Security Checkpoints: Instagram might be presenting a CAPTCHA, a 2-Factor Authentication (2FA) prompt, a "Suspicious Login Attempt" verification, or asking you to confirm your identity. The bot has very limited (or no) automated handling for these.
+
+Solution: Try logging into the account manually using a normal web browser from the same IP address/machine the bot is running on. Resolve any security checkpoints presented by Instagram. Then, try running the bot again.
+
+The bot attempts to save and load cookies. If cookies are corrupted or very old, login might fail. Try deleting the .cookies/ directory (it will be recreated) to force a fresh login.
+
+WebDriverException / ChromeDriver Errors:
+
+"Cannot find chrome binary": Google Chrome is not installed or not found in the system's PATH.
+
+"This version of ChromeDriver only supports Chrome version X": Your installed Google Chrome browser and the ChromeDriver version are incompatible.
+
+Solution:
+
+Update your Google Chrome browser to the latest version.
+
+webdriver-manager (used by the script) should then download the correct ChromeDriver. If issues persist, you might need to clear webdriver-manager's cache (usually in ~/.wdm/ or %USERPROFILE%\.wdm\) or manually specify a ChromeDriver version if webdriver-manager struggles.
+
+"Action Blocked" Messages from Instagram:
+
+If the bot logs indicate "ACTION BLOCKED" or you see this message on the account manually, Instagram has detected suspicious activity.
+
+Solution: Stop using the bot immediately on that account for several days (e.g., 3-7 days, or even longer). When/if you resume, significantly reduce the action limits in user_config.ini and consider using the (conceptual) session warm-up feature. Frequent action blocks can lead to permanent suspension.
+
+ImportError: Usually means you are not running python main.py from the root hsecurities-engagement-booster/ directory, your virtual environment is not activated, or requirements.txt was not installed correctly.
+
+Future Development Ideas (Conceptual)
+Robust handling of Instagram's security checkpoints (very challenging).
+
+Advanced warm-up schedules per account.
+
+GUI interface (e.g., using Tkinter, PyQt, or Electron).
+
+Support for more engagement types (e.g., commenting, following - EXTREMELY HIGH RISK).
+
+Database integration for managing multiple accounts and their states.
+
+Full server-side Pro license validation and management.
+
+AI-powered comment generation (highly complex and still risky).
+
+Contributing
+While this is a personal/experimental project, constructive feedback, bug reports (especially related to selectors or Instagram changes), and ethical feature suggestions are welcome. Please open an issue on GitHub to discuss.
+
+(Adjust this section based on your willingness to accept external contributions.)
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Stay Safe, Be Ethical, & Use Responsibly!
+This tool is powerful and interacts with a live platform. Understanding the risks and Instagram's policies is crucial.
