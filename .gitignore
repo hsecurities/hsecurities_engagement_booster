@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+config/user_config.ini
+logs/
+venv/
+.DS_Store
