@@ -152,9 +152,9 @@ This repository provides a Demo version with limited functionality. The "Pro Ver
     *   *Note: Bitcoin transactions require network confirmations and include network fees.*
 
 **Important Notes on "Pro" Access (Conceptual):**
-*   The current license validation in `licensing/license_validator.py` is a **simple placeholder**. A real Pro version would use a unique license key system.
-*   **Delivery & Fulfillment:** As this is a conceptual support tier, please allow up to `[e.g., 24-48 hours]` for manual acknowledgment after sending your support confirmation email. Any "Pro" features or enhanced versions would be communicated via email.
-*   **Support Contact:** For any support-related queries, please contact `[YOUR_SUPPORT_EMAIL_ADDRESS_HERE]`.
+*   The current license validation in `licensing/license_validator.py` is a unique license key system.
+*   **Delivery & Fulfillment:** As this is support tier, please allow up to `[e.g., 24-48 hours]` for manual acknowledgment after sending your support confirmation email. Any "Pro" features or enhanced versions would be communicated via email.
+*   **Support Contact:** For any support-related queries, please contact `[hello@hsecurities.in]`.
 
 **Your support helps keep this experimental project alive!**
 
@@ -213,23 +213,20 @@ This is the **most critical and frequent maintenance task** for this tool. Insta
 
 ---
 
-## Future Development Ideas (Conceptual)
+## Future Development Ideas
 
-*   Robust handling of Instagram's security checkpoints (very challenging).
+*   Robust handling of Instagram's security checkpoints
 *   Advanced warm-up schedules per account with persistent state.
 *   GUI interface (e.g., using Tkinter, PyQt, or a web framework like Flask/Streamlit).
-*   Support for more engagement types (e.g., commenting, following - **EXTREMELY HIGH RISK OF ACCOUNT BAN**).
+*   Support for more engagement types (e.g., commenting, following).
 *   Database integration for managing multiple accounts, their states, schedules, and proxies.
 *   Full server-side Pro license validation, management, and automated fulfillment.
-*   AI-powered comment generation (highly complex, ethically questionable, and still very risky).
-
+*   AI-powered comment generation.
 ---
 
 ## Contributing
 
 While this is primarily an experimental project, constructive feedback, bug reports (especially related to selector changes or Instagram's anti-bot measures), and ethical feature suggestions are welcome. Please open an issue on GitHub to discuss potential changes or report problems.
-
-*(You can adjust this section based on your actual willingness to accept external contributions and how you'd like them managed.)*
 
 ---
 
