@@ -1,6 +1,21 @@
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+venv/
+.env
+
+# Config & Logs (User-specific)
 config/user_config.ini
 logs/
-venv/
+.cookies/
+.errors/
+
+# OS generated files
 .DS_Store
+Thumbs.db
