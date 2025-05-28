@@ -139,13 +139,13 @@ This repository provides a Demo version with limited functionality. The "Pro Ver
 1.  **Support via PayU (INR):**
     *   **Suggested Support Amount:** **₹99 INR** (One-time)
     *   **Payment Link:** [https://u.payu.in/PAYUMN/2Jn6qaJvdhKD](https://u.payu.in/PAYUMN/2Jn6qaJvdhKD)
-    *   **After Supporting:** Please send an email to `[YOUR_SUPPORT_EMAIL_ADDRESS_HERE]` with your PayU transaction ID and the email address where you'd like to receive updates or conceptual Pro version details if/when they become available.
+    *   **After Supporting:** Please send an email to `[hello@hsecurities.in]` with your PayU transaction ID and the email address where you'd like to receive updates or conceptual Pro version details if/when they become available.
 
 2.  **Support via Bitcoin (BTC):**
     *   **Suggested Support Amount:** Approximately **₹99 INR equivalent in BTC**.
-    *   **Current Suggested BTC Amount:** **`[VERIFY_AND_UPDATE_THIS_BTC_AMOUNT]`** (e.g., `0.000030 BTC` - **Please verify the current BTC to INR exchange rate and update this value!**)
+    *   **Current Suggested BTC Amount:** **`[0.000011]`**
     *   **Bitcoin Address:** `1DuVFM8961i8fomMm1sxjJhiCgW6YFA5AH`
-    *   **After Supporting:** Please send an email to `[YOUR_SUPPORT_EMAIL_ADDRESS_HERE]` with:
+    *   **After Supporting:** Please send an email to `[hello@hsecurities.in]` with:
         1.  Your Bitcoin Transaction ID (TXID).
         2.  The approximate BTC amount sent.
         3.  The email address for updates or conceptual Pro version details.
